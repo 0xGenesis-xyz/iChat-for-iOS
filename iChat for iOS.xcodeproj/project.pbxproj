@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		380C6D441D0467F4009AE2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 380C6D431D0467F4009AE2BE /* main.m */; };
+		380C6D471D0467F4009AE2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 380C6D461D0467F4009AE2BE /* AppDelegate.m */; };
+		380C6D4A1D0467F4009AE2BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380C6D491D0467F4009AE2BE /* ViewController.m */; };
+		380C6D4D1D0467F4009AE2BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D4B1D0467F4009AE2BE /* Main.storyboard */; };
+		380C6D4F1D0467F4009AE2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D4E1D0467F4009AE2BE /* Assets.xcassets */; };
+		380C6D521D0467F4009AE2BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */; };
+		38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */; };
+		38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */; };
+		38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05011D0585D60046D1FA /* ProfileTableViewController.m */; };
+		960164C2BAD20719447B521D /* Pods_iChat_for_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203D00AB9A256D8D8E6D44C5 /* Pods_iChat_for_iOS.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		203D00AB9A256D8D8E6D44C5 /* Pods_iChat_for_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChat_for_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26CBC026E806145CE44FC656 /* Pods-iChat for iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat for iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		380C6D3F1D0467F4009AE2BE /* iChat for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iChat for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		380C6D431D0467F4009AE2BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		380C6D451D0467F4009AE2BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		380C6D461D0467F4009AE2BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		380C6D481D0467F4009AE2BE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		380C6D491D0467F4009AE2BE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		380C6D4C1D0467F4009AE2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		380C6D4E1D0467F4009AE2BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		380C6D511D0467F4009AE2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		380C6D531D0467F4009AE2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
+		38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
+		38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
+		38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewController.m; sourceTree = "<group>"; };
+		38DF05001D0585D60046D1FA /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
+		38DF05011D0585D60046D1FA /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
+		49E4FF41B52983580A66FDD3 /* Pods-iChat for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat for iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		380C6D3C1D0467F4009AE2BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				960164C2BAD20719447B521D /* Pods_iChat_for_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		380C6D361D0467F3009AE2BE = {
+			isa = PBXGroup;
+			children = (
+				380C6D411D0467F4009AE2BE /* iChat for iOS */,
+				380C6D401D0467F4009AE2BE /* Products */,
+				9200A3E3583BE67E4C6E064B /* Pods */,
+				7C3CB8D8413B24C1C6722237 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		380C6D401D0467F4009AE2BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				380C6D3F1D0467F4009AE2BE /* iChat for iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		380C6D411D0467F4009AE2BE /* iChat for iOS */ = {
+			isa = PBXGroup;
+			children = (
+				380C6D451D0467F4009AE2BE /* AppDelegate.h */,
+				380C6D461D0467F4009AE2BE /* AppDelegate.m */,
+				380C6D481D0467F4009AE2BE /* ViewController.h */,
+				380C6D491D0467F4009AE2BE /* ViewController.m */,
+				38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */,
+				38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */,
+				38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */,
+				38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */,
+				38DF05001D0585D60046D1FA /* ProfileTableViewController.h */,
+				38DF05011D0585D60046D1FA /* ProfileTableViewController.m */,
+				380C6D4B1D0467F4009AE2BE /* Main.storyboard */,
+				380C6D4E1D0467F4009AE2BE /* Assets.xcassets */,
+				380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */,
+				380C6D531D0467F4009AE2BE /* Info.plist */,
+				380C6D421D0467F4009AE2BE /* Supporting Files */,
+			);
+			path = "iChat for iOS";
+			sourceTree = "<group>";
+		};
+		380C6D421D0467F4009AE2BE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				380C6D431D0467F4009AE2BE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7C3CB8D8413B24C1C6722237 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				203D00AB9A256D8D8E6D44C5 /* Pods_iChat_for_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9200A3E3583BE67E4C6E064B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				26CBC026E806145CE44FC656 /* Pods-iChat for iOS.debug.xcconfig */,
+				49E4FF41B52983580A66FDD3 /* Pods-iChat for iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		380C6D3E1D0467F4009AE2BE /* iChat for iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 380C6D561D0467F4009AE2BE /* Build configuration list for PBXNativeTarget "iChat for iOS" */;
+			buildPhases = (
+				70E1B746A222D42DFB143395 /* 📦 Check Pods Manifest.lock */,
+				380C6D3B1D0467F4009AE2BE /* Sources */,
+				380C6D3C1D0467F4009AE2BE /* Frameworks */,
+				380C6D3D1D0467F4009AE2BE /* Resources */,
+				5DD365144EB3BF4976622991 /* 📦 Embed Pods Frameworks */,
+				AE74222EDF518C3F0AC35FA3 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iChat for iOS";
+			productName = "iChat for iOS";
+			productReference = 380C6D3F1D0467F4009AE2BE /* iChat for iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		380C6D371D0467F4009AE2BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Sylvanus;
+				TargetAttributes = {
+					380C6D3E1D0467F4009AE2BE = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = VU655ZGTDL;
+					};
+				};
+			};
+			buildConfigurationList = 380C6D3A1D0467F4009AE2BE /* Build configuration list for PBXProject "iChat for iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 380C6D361D0467F3009AE2BE;
+			productRefGroup = 380C6D401D0467F4009AE2BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				380C6D3E1D0467F4009AE2BE /* iChat for iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		380C6D3D1D0467F4009AE2BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				380C6D521D0467F4009AE2BE /* LaunchScreen.storyboard in Resources */,
+				380C6D4F1D0467F4009AE2BE /* Assets.xcassets in Resources */,
+				380C6D4D1D0467F4009AE2BE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5DD365144EB3BF4976622991 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70E1B746A222D42DFB143395 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE74222EDF518C3F0AC35FA3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		380C6D3B1D0467F4009AE2BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */,
+				380C6D4A1D0467F4009AE2BE /* ViewController.m in Sources */,
+				380C6D471D0467F4009AE2BE /* AppDelegate.m in Sources */,
+				38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */,
+				380C6D441D0467F4009AE2BE /* main.m in Sources */,
+				38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		380C6D4B1D0467F4009AE2BE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				380C6D4C1D0467F4009AE2BE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				380C6D511D0467F4009AE2BE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		380C6D541D0467F4009AE2BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		380C6D551D0467F4009AE2BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		380C6D571D0467F4009AE2BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26CBC026E806145CE44FC656 /* Pods-iChat for iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "iChat for iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sylvanus.iChat-for-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iChat for iOS/iChat for iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		380C6D581D0467F4009AE2BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49E4FF41B52983580A66FDD3 /* Pods-iChat for iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "iChat for iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Sylvanus.iChat-for-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iChat for iOS/iChat for iOS-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		380C6D3A1D0467F4009AE2BE /* Build configuration list for PBXProject "iChat for iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				380C6D541D0467F4009AE2BE /* Debug */,
+				380C6D551D0467F4009AE2BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		380C6D561D0467F4009AE2BE /* Build configuration list for PBXNativeTarget "iChat for iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				380C6D571D0467F4009AE2BE /* Debug */,
+				380C6D581D0467F4009AE2BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 380C6D371D0467F4009AE2BE /* Project object */;
+}
