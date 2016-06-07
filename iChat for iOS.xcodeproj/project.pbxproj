@@ -16,6 +16,9 @@
 		38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */; };
 		38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */; };
 		38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05011D0585D60046D1FA /* ProfileTableViewController.m */; };
+		38DF05051D0664F40046D1FA /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05041D0664F40046D1FA /* TableViewCell.m */; };
+		38DF05081D06A41F0046D1FA /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05071D06A41F0046D1FA /* ChatViewController.m */; };
+		38DF050B1D06CC440046D1FA /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF050A1D06CC440046D1FA /* ContactViewController.m */; };
 		960164C2BAD20719447B521D /* Pods_iChat_for_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203D00AB9A256D8D8E6D44C5 /* Pods_iChat_for_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,12 @@
 		38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewController.m; sourceTree = "<group>"; };
 		38DF05001D0585D60046D1FA /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
 		38DF05011D0585D60046D1FA /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
+		38DF05031D0664F40046D1FA /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		38DF05041D0664F40046D1FA /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		38DF05061D06A41F0046D1FA /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		38DF05071D06A41F0046D1FA /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		38DF05091D06CC440046D1FA /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		38DF050A1D06CC440046D1FA /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		49E4FF41B52983580A66FDD3 /* Pods-iChat for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat for iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +91,12 @@
 				38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */,
 				38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */,
 				38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */,
+				38DF05031D0664F40046D1FA /* TableViewCell.h */,
+				38DF05041D0664F40046D1FA /* TableViewCell.m */,
+				38DF05061D06A41F0046D1FA /* ChatViewController.h */,
+				38DF05071D06A41F0046D1FA /* ChatViewController.m */,
+				38DF05091D06CC440046D1FA /* ContactViewController.h */,
+				38DF050A1D06CC440046D1FA /* ContactViewController.m */,
 				38DF05001D0585D60046D1FA /* ProfileTableViewController.h */,
 				38DF05011D0585D60046D1FA /* ProfileTableViewController.m */,
 				380C6D4B1D0467F4009AE2BE /* Main.storyboard */,
@@ -240,11 +255,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DF05051D0664F40046D1FA /* TableViewCell.m in Sources */,
 				38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */,
 				380C6D4A1D0467F4009AE2BE /* ViewController.m in Sources */,
 				380C6D471D0467F4009AE2BE /* AppDelegate.m in Sources */,
+				38DF050B1D06CC440046D1FA /* ContactViewController.m in Sources */,
 				38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */,
 				380C6D441D0467F4009AE2BE /* main.m in Sources */,
+				38DF05081D06A41F0046D1FA /* ChatViewController.m in Sources */,
 				38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

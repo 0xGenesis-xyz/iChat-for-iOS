@@ -8,6 +8,8 @@
 
 #import "ContactTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "TableViewCell.h"
+#import "ContactViewController.h"
 
 @interface ContactTableViewController ()
 
@@ -18,11 +20,7 @@
 @implementation ContactTableViewController
 
 static NSString * const ReuseIdentifier = @"ContactCell";
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self fetchFriendListData];
-}
+static NSString * const SegueIdentifier = @"ShowContact";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,6 +30,11 @@ static NSString * const ReuseIdentifier = @"ContactCell";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchFriendListData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,12 +74,24 @@ static NSString * const ReuseIdentifier = @"ContactCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
     
     NSDictionary *group = [self.friendList objectAtIndex:indexPath.section];
     NSArray *friends = [group valueForKey:@"items"];
     NSString *friendID = [friends objectAtIndex:indexPath.row];
-    cell.textLabel.text = friendID;
+    cell.uid = [NSString stringWithString:friendID];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSDictionary *params = @{ @"uid": friendID };
+    [manager GET:@"http://localhost:3000/api/getUserInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+        cell.name.text = [dict objectForKey:@"username"];
+        cell.detail.text = [dict objectForKey:@"whatsup"];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
     
     return cell;
 }
@@ -115,14 +130,18 @@ static NSString * const ReuseIdentifier = @"ContactCell";
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:SegueIdentifier]) {
+        ContactViewController *contactViewController = segue.destinationViewController;
+        TableViewCell *cell = sender;
+        contactViewController.hidesBottomBarWhenPushed = YES;
+    }
 }
-*/
 
 @end

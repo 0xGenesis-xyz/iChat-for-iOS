@@ -8,6 +8,8 @@
 
 #import "ChatTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "TableViewCell.h"
+#import "ChatViewController.h"
 
 @interface ChatTableViewController ()
 
@@ -18,11 +20,7 @@
 @implementation ChatTableViewController
 
 static NSString * const ReuseIdentifier = @"ChatCell";
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self fetchChatListData];
-}
+static NSString * const SegueIdentifier = @"ShowChat";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,6 +30,11 @@ static NSString * const ReuseIdentifier = @"ChatCell";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchChatListData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,17 +67,19 @@ static NSString * const ReuseIdentifier = @"ChatCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
     
     NSString *chatID = [self.chatList objectAtIndex:indexPath.row];
+    cell.uid = [NSString stringWithString:chatID];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": chatID };
     [manager GET:@"http://localhost:3000/api/getChatInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@", dict);
-        cell.textLabel.text = [dict objectForKey:@"message"];
+        cell.detail.text = [dict objectForKey:@"message"];
+        cell.time.text = [dict objectForKey:@"time"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -116,14 +121,19 @@ static NSString * const ReuseIdentifier = @"ChatCell";
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:SegueIdentifier]) {
+        ChatViewController *chatViewController = segue.destinationViewController;
+        TableViewCell *cell = sender;
+        chatViewController.friendID = [NSString stringWithString:cell.uid];
+        chatViewController.hidesBottomBarWhenPushed = YES;
+    }
 }
-*/
 
 @end
