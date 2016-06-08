@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
-    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:url options:nil];
+    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": @"sylvanuszhy@gmail.com"} }];
     
     [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
@@ -39,16 +39,6 @@
     }];
     
     [socket connect];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"http://localhost:3000/api" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@", dic);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
