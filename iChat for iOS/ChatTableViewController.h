@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SocketIOClientSwift/SocketIOClientSwift-Swift.h>
 
 @interface ChatTableViewController : UITableViewController
+
+@property (strong, nonatomic) SocketIOClient *socket;
 
 @end

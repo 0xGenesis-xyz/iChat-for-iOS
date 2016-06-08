@@ -9,14 +9,12 @@
 #import "ChatTableViewController.h"
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
-#import <SocketIOClientSwift/SocketIOClientSwift-Swift.h>
 #import "TableViewCell.h"
 #import "ChatViewController.h"
 
 @interface ChatTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *chatList;
-@property (strong, nonatomic) SocketIOClient *socket;
 
 @end
 
@@ -31,21 +29,7 @@ static NSString * const SegueIdentifier = @"ShowChat";
     [[NSNotificationCenter defaultCenter] addObserverForName:NewMessageNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self fetchChatListData];
     }];
-    
-    NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
-    self.socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": @"sylvanuszhy@gmail.com"}, @"log": @NO }];
-    
-    [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        NSLog(@"socket connected");
-    }];
-    
-    [self.socket on:@"newMessage" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        NSDictionary *userInfo = [data objectAtIndex:0];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NewMessageNotification object:self userInfo:userInfo];
-    }];
-    
-    [self.socket connect];
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

@@ -21,7 +21,8 @@
 @implementation ContactTableViewController
 
 static NSString * const ReuseIdentifier = @"ContactCell";
-static NSString * const SegueIdentifier = @"ShowContact";
+static NSString * const ShowSegueIdentifier = @"ShowContact";
+static NSString * const ModalSegueIdentifier = @"ModalAdd";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -139,11 +140,14 @@ static NSString * const SegueIdentifier = @"ShowContact";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:SegueIdentifier]) {
+    if ([segue.identifier isEqualToString:ShowSegueIdentifier]) {
         FriendTableViewController *friendViewController = segue.destinationViewController;
         TableViewCell *cell = sender;
         friendViewController.friendID = [NSString stringWithString:cell.uid];
         friendViewController.hidesBottomBarWhenPushed = YES;
+    }
+    if ([segue.identifier isEqualToString:ModalSegueIdentifier]) {
+        [self.socket emit:@"request" withItems:@[ @{@"uid": @"test", @"message": @"hi"} ]];
     }
 }
 

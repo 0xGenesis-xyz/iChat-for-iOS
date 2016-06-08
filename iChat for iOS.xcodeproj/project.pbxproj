@@ -13,6 +13,7 @@
 		380C6D4D1D0467F4009AE2BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D4B1D0467F4009AE2BE /* Main.storyboard */; };
 		380C6D4F1D0467F4009AE2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D4E1D0467F4009AE2BE /* Assets.xcassets */; };
 		380C6D521D0467F4009AE2BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */; };
+		388BA34B1D085215002FA20B /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 388BA34A1D085215002FA20B /* TabBarController.m */; };
 		38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */; };
 		38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */; };
 		38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05011D0585D60046D1FA /* ProfileTableViewController.m */; };
@@ -36,6 +37,8 @@
 		380C6D4E1D0467F4009AE2BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		380C6D511D0467F4009AE2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		380C6D531D0467F4009AE2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		388BA3491D085215002FA20B /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		388BA34A1D085215002FA20B /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
 		38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
 		38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				380C6D461D0467F4009AE2BE /* AppDelegate.m */,
 				380C6D481D0467F4009AE2BE /* ViewController.h */,
 				380C6D491D0467F4009AE2BE /* ViewController.m */,
+				388BA3491D085215002FA20B /* TabBarController.h */,
+				388BA34A1D085215002FA20B /* TabBarController.m */,
 				38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */,
 				38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */,
 				38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */,
@@ -267,6 +272,7 @@
 				380C6D4A1D0467F4009AE2BE /* ViewController.m in Sources */,
 				38DF05111D07C3E10046D1FA /* ChangeTextViewController.m in Sources */,
 				380C6D471D0467F4009AE2BE /* AppDelegate.m in Sources */,
+				388BA34B1D085215002FA20B /* TabBarController.m in Sources */,
 				38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */,
 				380C6D441D0467F4009AE2BE /* main.m in Sources */,
 				38DF05141D07CE120046D1FA /* FriendTableViewController.m in Sources */,
