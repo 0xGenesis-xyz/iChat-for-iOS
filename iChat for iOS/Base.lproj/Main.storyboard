@@ -173,14 +173,14 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvL-jz-La4">
                                                     <rect key="frame" x="8" y="-1" width="80" height="80"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He4-tc-3L2">
-                                                    <rect key="frame" x="96" y="50" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-bS-HrD">
+                                                    <rect key="frame" x="96" y="8" width="160" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-bS-HrD">
-                                                    <rect key="frame" x="96" y="8" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He4-tc-3L2">
+                                                    <rect key="frame" x="96" y="46" width="200" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -308,6 +308,14 @@
                             <outlet property="delegate" destination="7Jm-Ka-9FS" id="oYU-jK-2HN"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="avatar" destination="xvL-jz-La4" id="7jn-s7-FFD"/>
+                        <outlet property="birthday" destination="Vro-1d-7XF" id="TSI-Y0-4eg"/>
+                        <outlet property="email" destination="He4-tc-3L2" id="vSa-62-lc9"/>
+                        <outlet property="location" destination="lCh-uW-INg" id="Zqf-X1-QzT"/>
+                        <outlet property="name" destination="yX4-bS-HrD" id="dNT-p8-mki"/>
+                        <outlet property="whatsup" destination="HxJ-uN-gk9" id="xtK-Xm-ycF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3d-lt-R11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -612,6 +620,10 @@
         <scene sceneID="IWD-AE-DMd">
             <objects>
                 <viewController id="wut-Hg-0qT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qH6-ZB-ldP"/>
+                        <viewControllerLayoutGuide type="bottom" id="ze8-Sq-vaR"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jPN-0t-RfC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

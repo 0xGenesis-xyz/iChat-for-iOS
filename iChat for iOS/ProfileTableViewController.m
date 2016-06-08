@@ -43,7 +43,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"uid" : @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"uid": @"sylvanuszhy@gmail.com" };
     [manager GET:@"http://localhost:3000/api/getUserInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.name.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"username"]];

@@ -10,4 +10,6 @@
 
 @interface FriendTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *friendID;
+
 @end

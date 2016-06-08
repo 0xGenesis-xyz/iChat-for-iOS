@@ -7,8 +7,16 @@
 //
 
 #import "FriendTableViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface FriendTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *email;
+@property (weak, nonatomic) IBOutlet UILabel *birthday;
+@property (weak, nonatomic) IBOutlet UILabel *location;
+@property (weak, nonatomic) IBOutlet UILabel *whatsup;
 
 @end
 
@@ -24,9 +32,31 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchFriendInfoData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)fetchFriendInfoData {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSDictionary *params = @{ @"uid": self.friendID };
+    [manager GET:@"http://localhost:3000/api/getUserInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+        self.name.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"username"]];
+        self.email.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"email"]];
+        self.birthday.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"birthday"]];
+        self.location.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"location"]];
+        self.whatsup.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"whatsup"]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 #pragma mark - Table view data source

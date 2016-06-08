@@ -140,6 +140,7 @@ static NSString * const SegueIdentifier = @"ShowContact";
     if ([segue.identifier isEqualToString:SegueIdentifier]) {
         FriendTableViewController *friendViewController = segue.destinationViewController;
         TableViewCell *cell = sender;
+        friendViewController.friendID = [NSString stringWithString:cell.uid];
         friendViewController.hidesBottomBarWhenPushed = YES;
     }
 }
