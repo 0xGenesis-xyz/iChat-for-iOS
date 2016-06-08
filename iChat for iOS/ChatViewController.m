@@ -94,6 +94,16 @@
     return nil;
 }
 
+#pragma mark - Message Bar
+
+- (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date {
+    [self finishSendingMessage];
+}
+
+- (void)didPressAccessoryButton:(UIButton *)sender {
+    // do something
+}
+
 /*
 #pragma mark - Navigation
 

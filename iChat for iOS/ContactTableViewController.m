@@ -9,7 +9,7 @@
 #import "ContactTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "TableViewCell.h"
-#import "ContactViewController.h"
+#import "FriendTableViewController.h"
 
 @interface ContactTableViewController ()
 
@@ -138,9 +138,9 @@ static NSString * const SegueIdentifier = @"ShowContact";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:SegueIdentifier]) {
-        ContactViewController *contactViewController = segue.destinationViewController;
+        FriendTableViewController *friendViewController = segue.destinationViewController;
         TableViewCell *cell = sender;
-        contactViewController.hidesBottomBarWhenPushed = YES;
+        friendViewController.hidesBottomBarWhenPushed = YES;
     }
 }
 

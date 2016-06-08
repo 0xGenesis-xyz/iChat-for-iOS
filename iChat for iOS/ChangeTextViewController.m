@@ -1,18 +1,18 @@
 //
-//  ContactViewController.m
+//  ChangeTextViewController.m
 //  iChat for iOS
 //
-//  Created by Sylvanus on 6/7/16.
+//  Created by Sylvanus on 6/8/16.
 //  Copyright © 2016 Sylvanus. All rights reserved.
 //
 
-#import "ContactViewController.h"
+#import "ChangeTextViewController.h"
 
-@interface ContactViewController ()
+@interface ChangeTextViewController ()
 
 @end
 
-@implementation ContactViewController
+@implementation ChangeTextViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
