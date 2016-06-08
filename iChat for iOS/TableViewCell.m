@@ -21,4 +21,11 @@
     // Configure the view for the selected state
 }
 
+- (UIImageView *)avatar {
+    if (!_avatar) {
+        _avatar = [[UIImageView alloc] init];
+    }
+    return _avatar;
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ChatTableViewController.h"
+#import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 #import "TableViewCell.h"
 #import "ChatViewController.h"
@@ -47,7 +48,7 @@ static NSString * const SegueIdentifier = @"ShowChat";
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
-    [manager GET:@"http://localhost:3000/api/getChatlistByToken" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatlistByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.chatList = [NSMutableArray arrayWithArray:[dict valueForKey:@"chats"]];
         [self.tableView reloadData];
@@ -76,7 +77,7 @@ static NSString * const SegueIdentifier = @"ShowChat";
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": chatID };
-    [manager GET:@"http://localhost:3000/api/getChatInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         cell.detail.text = [dict objectForKey:@"message"];
         cell.time.text = [dict objectForKey:@"time"];

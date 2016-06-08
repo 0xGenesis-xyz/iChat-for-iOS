@@ -7,11 +7,14 @@
 //
 
 #import "FriendTableViewController.h"
+#import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface FriendTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) NSURL *avatarURL;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *email;
 @property (weak, nonatomic) IBOutlet UILabel *birthday;
@@ -47,13 +50,15 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"uid": self.friendID };
-    [manager GET:@"http://localhost:3000/api/getUserInfo" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+        self.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
         self.name.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"username"]];
         self.email.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"email"]];
         self.birthday.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"birthday"]];
         self.location.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"location"]];
         self.whatsup.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"whatsup"]];
+        [self.avatar setImageWithURL:self.avatarURL];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -124,5 +129,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (UIImageView *)avatar {
+    if (!_avatar) {
+        _avatar = [[UIImageView alloc] init];
+    }
+    return _avatar;
+}
 
 @end

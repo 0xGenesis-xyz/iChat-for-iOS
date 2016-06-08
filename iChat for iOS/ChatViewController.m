@@ -7,6 +7,7 @@
 //
 
 #import "ChatViewController.h"
+#import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 #import <JSQMessagesViewController/JSQMessage.h>
 #import <JSQMessagesViewController/JSQMessagesBubbleImageFactory.h>
@@ -44,7 +45,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID };
-    [manager GET:@"http://localhost:3000/api/getChatMessage" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatMessage"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSArray *messageArray = [NSArray arrayWithArray:[dict valueForKey:@"messages"]];
         self.messages = [NSMutableArray arrayWithCapacity:[messageArray count]];

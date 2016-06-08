@@ -11,7 +11,7 @@
 @interface TableViewCell : UITableViewCell
 
 @property (strong, nonatomic) NSString *uid;
-@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *detail;
 @property (weak, nonatomic) IBOutlet UILabel *time;

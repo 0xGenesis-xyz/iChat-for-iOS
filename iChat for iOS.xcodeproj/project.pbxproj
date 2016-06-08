@@ -50,6 +50,7 @@
 		38DF05101D07C3E10046D1FA /* ChangeTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTextViewController.m; sourceTree = "<group>"; };
 		38DF05121D07CE120046D1FA /* FriendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewController.h; sourceTree = "<group>"; };
 		38DF05131D07CE120046D1FA /* FriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewController.m; sourceTree = "<group>"; };
+		38DF05151D07DCAA0046D1FA /* iChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iChat.h; sourceTree = "<group>"; };
 		49E4FF41B52983580A66FDD3 /* Pods-iChat for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChat for iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iChat for iOS/Pods-iChat for iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +105,7 @@
 				38DF05011D0585D60046D1FA /* ProfileTableViewController.m */,
 				38DF050F1D07C3E10046D1FA /* ChangeTextViewController.h */,
 				38DF05101D07C3E10046D1FA /* ChangeTextViewController.m */,
+				38DF05151D07DCAA0046D1FA /* iChat.h */,
 				380C6D4B1D0467F4009AE2BE /* Main.storyboard */,
 				380C6D4E1D0467F4009AE2BE /* Assets.xcassets */,
 				380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */,
