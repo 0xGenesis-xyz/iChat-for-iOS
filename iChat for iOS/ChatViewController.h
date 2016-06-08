@@ -7,9 +7,11 @@
 //
 
 #import <JSQMessagesViewController/JSQMessagesViewController.h>
+#import <SocketIOClientSwift/SocketIOClientSwift-Swift.h>
 
 @interface ChatViewController : JSQMessagesViewController
 
 @property (strong, nonatomic) NSString *friendID;
+@property (strong, nonatomic) SocketIOClient *socket;
 
 @end

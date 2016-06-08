@@ -546,7 +546,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="8AX-F0-SKQ">
             <objects>
-                <tabBarController id="EtU-sA-CbL" sceneMemberID="viewController">
+                <tabBarController id="EtU-sA-CbL" customClass="TabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Yg7-Yr-1LZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -12,4 +12,6 @@
 #define HOST @"http://localhost:3000"
 #define AVATARROOT [NSString stringWithFormat:@"%@%@/", HOST, @"/avatars"]
 
+#define NewMessageNotification @"NewMessageNotification"
+
 #endif /* iChat_h */

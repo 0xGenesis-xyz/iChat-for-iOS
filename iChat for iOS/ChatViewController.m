@@ -28,6 +28,12 @@
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor blueColor]];
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor lightGrayColor]];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:NewMessageNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        if ([self.friendID isEqualToString:[NSString stringWithFormat:@"%@", [note.userInfo objectForKey:@"uid"]]]) {
+            [self fetchMessageData];
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -98,6 +104,10 @@
 #pragma mark - Message Bar
 
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date {
+    [self.socket emit:@"send" withItems:@[ @{@"to": self.friendID, @"message": text} ]];
+    [self.messages addObject:[JSQMessage messageWithSenderId:senderId
+                                                 displayName:senderDisplayName
+                                                        text:text]];
     [self finishSendingMessage];
 }
 

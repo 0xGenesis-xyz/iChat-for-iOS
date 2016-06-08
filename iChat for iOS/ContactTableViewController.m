@@ -9,7 +9,6 @@
 #import "ContactTableViewController.h"
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "TableViewCell.h"
 #import "FriendTableViewController.h"
 
@@ -89,10 +88,9 @@ static NSString * const SegueIdentifier = @"ShowContact";
     NSDictionary *params = @{ @"uid": friendID };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        NSURL *avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
+        cell.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
         cell.name.text = [dict objectForKey:@"username"];
         cell.detail.text = [dict objectForKey:@"whatsup"];
-        [cell.avatar setImageWithURL:avatarURL];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];

@@ -58,7 +58,6 @@
         self.birthday.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"birthday"]];
         self.location.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"location"]];
         self.whatsup.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"whatsup"]];
-        [self.avatar setImageWithURL:self.avatarURL];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -135,6 +134,11 @@
         _avatar = [[UIImageView alloc] init];
     }
     return _avatar;
+}
+
+- (void)setAvatarURL:(NSURL *)avatarURL {
+    _avatarURL = avatarURL;
+    [self.avatar setImageWithURL:_avatarURL];
 }
 
 @end

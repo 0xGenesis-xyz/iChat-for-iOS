@@ -7,6 +7,7 @@
 //
 
 #import "TableViewCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation TableViewCell
 
@@ -26,6 +27,11 @@
         _avatar = [[UIImageView alloc] init];
     }
     return _avatar;
+}
+
+- (void)setAvatarURL:(NSURL *)avatarURL {
+    _avatarURL = avatarURL;
+    [self.avatar setImageWithURL:_avatarURL];
 }
 
 @end

@@ -28,6 +28,10 @@ static NSString * const SegueIdentifier = @"ShowChat";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserverForName:NewMessageNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self fetchChatListData];
+    }];
+    
     NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
     self.socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": @"sylvanuszhy@gmail.com"}, @"log": @NO }];
     
@@ -36,7 +40,8 @@ static NSString * const SegueIdentifier = @"ShowChat";
     }];
     
     [self.socket on:@"newMessage" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        NSLog(@"xxx");
+        NSDictionary *userInfo = [data objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NewMessageNotification object:self userInfo:userInfo];
     }];
     
     [self.socket connect];
@@ -92,6 +97,13 @@ static NSString * const SegueIdentifier = @"ShowChat";
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": chatID };
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+        cell.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
+        cell.name.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"username"]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         cell.detail.text = [dict objectForKey:@"message"];
@@ -148,6 +160,7 @@ static NSString * const SegueIdentifier = @"ShowChat";
         ChatViewController *chatViewController = segue.destinationViewController;
         TableViewCell *cell = sender;
         chatViewController.friendID = [NSString stringWithString:cell.uid];
+        chatViewController.socket = self.socket;
         chatViewController.hidesBottomBarWhenPushed = YES;
     }
 }
