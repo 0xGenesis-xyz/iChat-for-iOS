@@ -12,6 +12,7 @@
 #define HOST @"http://localhost:3000"
 #define AVATARROOT [NSString stringWithFormat:@"%@%@/", HOST, @"/avatars"]
 
+#define FriendRequestFromSystem @"Validation@System"
 #define NewMessageNotification @"NewMessageNotification"
 
 #define AvatarImageDiameter 40

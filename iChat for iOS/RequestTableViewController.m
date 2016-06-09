@@ -1,36 +1,30 @@
 //
-//  ChatTableViewController.m
+//  RequestTableViewController.m
 //  iChat for iOS
 //
-//  Created by Sylvanus on 6/6/16.
+//  Created by Sylvanus on 6/9/16.
 //  Copyright © 2016 Sylvanus. All rights reserved.
 //
 
-#import "ChatTableViewController.h"
+#import "RequestTableViewController.h"
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 #import "TableViewCell.h"
-#import "ChatViewController.h"
+#import "FriendRequest.h"
 
-@interface ChatTableViewController ()
+@interface RequestTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *chatList;
+@property (strong, nonatomic) NSMutableArray *requests;
 
 @end
 
-@implementation ChatTableViewController
+@implementation RequestTableViewController
 
-static NSString * const ReuseIdentifier = @"ChatCell";
-static NSString * const ChatSegueIdentifier = @"ShowChat";
-static NSString * const RequestSegueIdentifier = @"ShowRequest";
+static NSString * const ReuseIdentifier = @"RequestCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:NewMessageNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [self fetchChatListData];
-    }];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,7 +34,7 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self fetchChatListData];
+    [self fetchRequestData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,15 +42,28 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)fetchChatListData {
+- (void)fetchRequestData {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
-    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatlistByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getFriendRequest"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        self.chatList = [NSMutableArray arrayWithArray:[dict valueForKey:@"chats"]];
+        NSArray *requestArray = [NSArray arrayWithArray:[dict valueForKey:@"requests"]];
+        self.requests = [NSMutableArray arrayWithCapacity:[requestArray count]];
+        for (NSDictionary *request in requestArray) {
+            FriendRequest *friendRequest = [[FriendRequest alloc] initWithWho:[request objectForKey:@"who"]
+                                                                      message:[request objectForKey:@"message"]
+                                                                         time:[request objectForKey:@"time"]
+                                                                        state:[request objectForKey:@"state"]];
+            [self.requests addObject:friendRequest];
+        }
         [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/checkRequest"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -69,30 +76,30 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.chatList count];
+    return [self.requests count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
     
-    NSString *chatID = [self.chatList objectAtIndex:indexPath.row];
-    cell.uid = [NSString stringWithString:chatID];
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": chatID };
+    FriendRequest *friendRequest = [self.requests objectAtIndex:indexPath.item];
+    cell.uid = [NSString stringWithString:friendRequest.who];
+    NSDictionary *params = @{ @"uid": friendRequest.who };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         cell.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
-        cell.name.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"username"]];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }];
-    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        cell.detail.text = [dict objectForKey:@"message"];
-        cell.time.text = [dict objectForKey:@"time"];
+        cell.name.text = [dict objectForKey:@"username"];
+        cell.detail.text = friendRequest.message;
+        if ([friendRequest.state isEqualToString:@"accepted"]) {
+            cell.button.enabled = NO;
+        } else if ([friendRequest.state isEqualToString:@"ignored"]) {
+            cell.button.enabled = NO;
+        } else {
+            cell.button.enabled = YES;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -134,31 +141,14 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *chatID = [self.chatList objectAtIndex:indexPath.row];
-    if ([chatID isEqualToString:FriendRequestFromSystem]) {
-        [self performSegueWithIdentifier:RequestSegueIdentifier sender:[self.tableView cellForRowAtIndexPath:indexPath]];
-    } else {
-        [self performSegueWithIdentifier:ChatSegueIdentifier sender:[self.tableView cellForRowAtIndexPath:indexPath]];
-    }
-}
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:ChatSegueIdentifier]) {
-        ChatViewController *chatViewController = segue.destinationViewController;
-        TableViewCell *cell = sender;
-        chatViewController.friendID = [NSString stringWithString:cell.uid];
-        chatViewController.friendName = cell.name.text;
-        chatViewController.friendAvatarImage = cell.avatar.image;
-        chatViewController.socket = self.socket;
-        chatViewController.title = cell.name.text;
-        chatViewController.hidesBottomBarWhenPushed = YES;
-    }
 }
+*/
 
 @end

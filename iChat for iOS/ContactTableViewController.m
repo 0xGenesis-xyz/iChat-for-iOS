@@ -22,7 +22,6 @@
 
 static NSString * const ReuseIdentifier = @"ContactCell";
 static NSString * const ShowSegueIdentifier = @"ShowContact";
-static NSString * const ModalSegueIdentifier = @"ModalAdd";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +55,23 @@ static NSString * const ModalSegueIdentifier = @"ModalAdd";
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
+}
+
+- (IBAction)addFriend:(UIBarButtonItem *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add a Friend" message:@"Add a friend by name or email, with a message" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSString *newFriend = alertController.textFields[0].text;
+        NSString *message = alertController.textFields[1].text;
+        [self.socket emit:@"request" withItems:@[ @{@"uid": newFriend, @"message": message} ]];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:nil];
+    [alertController addTextFieldWithConfigurationHandler:nil];
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -148,9 +164,6 @@ static NSString * const ModalSegueIdentifier = @"ModalAdd";
         friendTableViewController.groupID = [NSString stringWithString:cell.gid];
         friendTableViewController.friendID = [NSString stringWithString:cell.uid];
         friendTableViewController.hidesBottomBarWhenPushed = YES;
-    }
-    if ([segue.identifier isEqualToString:ModalSegueIdentifier]) {
-        [self.socket emit:@"request" withItems:@[ @{@"uid": @"test", @"message": @"hi"} ]];
     }
 }
 

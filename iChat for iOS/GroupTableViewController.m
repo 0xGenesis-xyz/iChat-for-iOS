@@ -71,10 +71,9 @@ static NSString * const ReuseIdentifier = @"GroupCell";
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
     
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-    }];
-    [alertController addAction:okAction];
+    [alertController addTextFieldWithConfigurationHandler:nil];
     [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
