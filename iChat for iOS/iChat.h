@@ -13,7 +13,9 @@
 #define AVATARROOT [NSString stringWithFormat:@"%@%@/", HOST, @"/avatars"]
 
 #define FriendRequestFromSystem @"Validation@System"
+
 #define NewMessageNotification @"NewMessageNotification"
+#define NewRequestNotification @"NewRequestNotification"
 
 #define AvatarImageDiameter 40
 

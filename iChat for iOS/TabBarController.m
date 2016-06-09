@@ -21,9 +21,21 @@
         NSLog(@"socket connected");
     }];
     
+    [self.socket on:@"unread" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSString *unread = [NSString stringWithFormat:@"%@", [data objectAtIndex:0]];
+        UINavigationController *chatNavigationController = [self.viewControllers objectAtIndex:0];
+        ChatTableViewController *chatTableViewController = (ChatTableViewController *)chatNavigationController.topViewController;
+        chatTableViewController.tabBarItem.badgeValue = unread;
+    }];
+    
     [self.socket on:@"newMessage" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSDictionary *userInfo = [data objectAtIndex:0];
         [[NSNotificationCenter defaultCenter] postNotificationName:NewMessageNotification object:self userInfo:userInfo];
+    }];
+    
+    [self.socket on:@"newRequest" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSDictionary *userInfo = [data objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NewRequestNotification object:self userInfo:userInfo];
     }];
     
     [self.socket connect];

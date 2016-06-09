@@ -25,6 +25,10 @@ static NSString * const ReuseIdentifier = @"RequestCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserverForName:NewRequestNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self fetchRequestData];
+    }];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
