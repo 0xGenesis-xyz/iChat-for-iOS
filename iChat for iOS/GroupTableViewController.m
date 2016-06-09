@@ -1,28 +1,24 @@
 //
-//  ContactTableViewController.m
+//  GroupTableViewController.m
 //  iChat for iOS
 //
-//  Created by Sylvanus on 6/6/16.
+//  Created by Sylvanus on 6/9/16.
 //  Copyright © 2016 Sylvanus. All rights reserved.
 //
 
-#import "ContactTableViewController.h"
+#import "GroupTableViewController.h"
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
-#import "TableViewCell.h"
-#import "FriendTableViewController.h"
 
-@interface ContactTableViewController ()
+@interface GroupTableViewController ()
 
-@property (strong, nonatomic) NSArray *friendList;
+@property (strong, nonatomic) NSArray *groupList;
 
 @end
 
-@implementation ContactTableViewController
+@implementation GroupTableViewController
 
-static NSString * const ReuseIdentifier = @"ContactCell";
-static NSString * const ShowSegueIdentifier = @"ShowContact";
-static NSString * const ModalSegueIdentifier = @"ModalAdd";
+static NSString * const ReuseIdentifier = @"GroupCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +32,7 @@ static NSString * const ModalSegueIdentifier = @"ModalAdd";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self fetchFriendListData];
+    [self fetchGroupData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,59 +40,59 @@ static NSString * const ModalSegueIdentifier = @"ModalAdd";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)fetchFriendListData {
+- (void)fetchGroupData {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
-    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getFriendlistByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getGroupListByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        self.friendList = [NSArray arrayWithArray:[dict valueForKey:@"friends"]];
+        self.groupList = [NSArray arrayWithArray:[dict valueForKey:@"groups"]];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
+- (IBAction)newGroup:(UIBarButtonItem *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Group" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSString *newGroup = alertController.textFields[0].text;
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"newGroup": newGroup };
+        [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/addGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+            [self fetchGroupData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    }];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.friendList count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSDictionary *group = [self.friendList objectAtIndex:section];
-    NSArray *friends = [group valueForKey:@"items"];
-    return [friends count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSDictionary *group = [self.friendList objectAtIndex:section];
-    return [group valueForKey:@"group"];
+    return [self.groupList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
     
-    NSDictionary *group = [self.friendList objectAtIndex:indexPath.section];
-    NSString *groupID = [group valueForKey:@"group"];
-    NSArray *friends = [group valueForKey:@"items"];
-    NSString *friendID = [friends objectAtIndex:indexPath.row];
-    cell.gid = [NSString stringWithString:groupID];
-    cell.uid = [NSString stringWithString:friendID];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSDictionary *params = @{ @"uid": friendID };
-    [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        cell.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
-        cell.name.text = [dict objectForKey:@"username"];
-        cell.detail.text = [dict objectForKey:@"whatsup"];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.groupList objectAtIndex:indexPath.item]];
     
     return cell;
 }
@@ -135,23 +131,28 @@ static NSString * const ModalSegueIdentifier = @"ModalAdd";
 }
 */
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *groupName = [NSString stringWithFormat:@"%@", [self.groupList objectAtIndex:indexPath.item]];
+    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID, @"fromGroup": self.groupID, @"toGroup": groupName };
+    [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changeGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:ShowSegueIdentifier]) {
-        FriendTableViewController *friendTableViewController = segue.destinationViewController;
-        TableViewCell *cell = sender;
-        friendTableViewController.groupID = [NSString stringWithString:cell.gid];
-        friendTableViewController.friendID = [NSString stringWithString:cell.uid];
-        friendTableViewController.hidesBottomBarWhenPushed = YES;
-    }
-    if ([segue.identifier isEqualToString:ModalSegueIdentifier]) {
-        [self.socket emit:@"request" withItems:@[ @{@"uid": @"test", @"message": @"hi"} ]];
-    }
 }
+*/
 
 @end

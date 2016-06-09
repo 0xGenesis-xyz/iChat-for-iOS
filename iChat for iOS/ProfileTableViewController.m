@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ChangeTextViewController.h"
+#import "ChangeOptionTableViewController.h"
 
 @interface ProfileTableViewController ()
 
@@ -28,6 +29,7 @@
 @implementation ProfileTableViewController
 
 static NSString * const NameSegueIdentifier = @"ChangeNickname";
+static NSString * const GenderSegueIdentifier = @"ChangeGender";
 static NSString * const LocationSegueIdentifier = @"ChangeLocation";
 static NSString * const WhatsupSegueIdentifier = @"ChangeWhatsup";
 
@@ -137,6 +139,17 @@ static NSString * const WhatsupSegueIdentifier = @"ChangeWhatsup";
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
         changeTextViewController.title = @"Name";
         changeTextViewController.textField.text = self.name.text;
+    }
+    if ([segue.identifier isEqualToString:GenderSegueIdentifier]) {
+        ChangeOptionTableViewController *changeOptionTableViewController = segue.destinationViewController;
+        changeOptionTableViewController.title = @"Gender";
+        if ([self.gender.text isEqualToString:@"male"]) {
+            changeOptionTableViewController.male.text = @"✔️";
+            changeOptionTableViewController.female.text = @"";
+        } else {
+            changeOptionTableViewController.male.text = @"";
+            changeOptionTableViewController.female.text = @"✔️";
+        }
     }
     if ([segue.identifier isEqualToString:LocationSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;

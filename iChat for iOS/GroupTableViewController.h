@@ -1,14 +1,14 @@
 //
-//  FriendTableViewController.h
+//  GroupTableViewController.h
 //  iChat for iOS
 //
-//  Created by Sylvanus on 6/8/16.
+//  Created by Sylvanus on 6/9/16.
 //  Copyright © 2016 Sylvanus. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface FriendTableViewController : UITableViewController
+@interface GroupTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *groupID;
 @property (strong, nonatomic) NSString *friendID;

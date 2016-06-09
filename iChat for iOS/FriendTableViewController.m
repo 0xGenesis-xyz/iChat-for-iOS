@@ -10,6 +10,7 @@
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "GroupTableViewController.h"
 
 @interface FriendTableViewController ()
 
@@ -25,6 +26,8 @@
 @end
 
 @implementation FriendTableViewController
+
+static NSString * const SegueIdentifier = @"ShowGroup";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -121,15 +124,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:SegueIdentifier]) {
+        GroupTableViewController *groupTableViewController = segue.destinationViewController;
+        groupTableViewController.groupID = [NSString stringWithString:self.groupID];
+        groupTableViewController.friendID = [NSString stringWithString:self.friendID];
+    }
 }
-*/
+
+#pragma mark - Getter Setter
 
 - (UIImageView *)avatar {
     if (!_avatar) {

@@ -10,6 +10,7 @@
 
 @interface TableViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSString *gid;
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSURL *avatarURL;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
