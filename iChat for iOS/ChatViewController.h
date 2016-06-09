@@ -12,6 +12,8 @@
 @interface ChatViewController : JSQMessagesViewController
 
 @property (strong, nonatomic) NSString *friendID;
+@property (strong, nonatomic) NSString *friendName;
+@property (strong, nonatomic) UIImage *friendAvatarImage;
 @property (strong, nonatomic) SocketIOClient *socket;
 
 @end

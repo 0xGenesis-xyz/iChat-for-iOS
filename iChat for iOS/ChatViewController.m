@@ -11,10 +11,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import <JSQMessagesViewController/JSQMessage.h>
 #import <JSQMessagesViewController/JSQMessagesBubbleImageFactory.h>
+#import <JSQMessagesViewController/JSQMessagesAvatarImageFactory.h>
 
 @interface ChatViewController ()
 
 @property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) JSQMessagesAvatarImage *friendAvatar;
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
 
@@ -39,6 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchMessageData];
+    self.friendAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:self.friendAvatarImage diameter:AvatarImageDiameter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,11 +71,11 @@
 
 #pragma mark - Data Source
 
-- (NSString *)senderDisplayName {
+- (NSString *)senderId {
     return @"sylvanuszhy@gmail.com";
 }
 
-- (NSString *)senderId {
+- (NSString *)senderDisplayName {
     return @"sylvanuszhy@gmail.com";
 }
 
@@ -93,12 +96,17 @@
     }
 }
 
-- (void)collectionView:(JSQMessagesCollectionView *)collectionView didDeleteMessageAtIndexPath:(NSIndexPath *)indexPath {
-    [self.messages removeObjectAtIndex:indexPath.row];
+- (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessage *message = [self.messages objectAtIndex:indexPath.row];
+    if ([message.senderId isEqualToString:self.friendID]) {
+        return self.friendAvatar;
+    } else {
+        return nil;
+    }
 }
 
-- (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didDeleteMessageAtIndexPath:(NSIndexPath *)indexPath {
+    [self.messages removeObjectAtIndex:indexPath.row];
 }
 
 #pragma mark - Message Bar

@@ -7,6 +7,8 @@
 //
 
 #import "ChangeTextViewController.h"
+#import "iChat.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ChangeTextViewController ()
 
@@ -22,6 +24,33 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)ClickDone:(UIBarButtonItem *)sender {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *url;
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
+    [params setObject:@"sylvanuszhy@gmail.com" forKey:@"token"];
+    if ([self.title isEqualToString:@"Name"]) {
+        url = [NSString stringWithFormat:@"%@%@", HOST, @"/api/changeNicknameByToken"];
+        [params setObject:self.textField.text forKey:@"name"];
+    }
+    if ([self.title isEqualToString:@"Location"]) {
+        url = [NSString stringWithFormat:@"%@%@", HOST, @"/api/changeLocationByToken"];
+        [params setObject:self.textField.text forKey:@"location"];
+    }
+    if ([self.title isEqualToString:@"What's up"]) {
+        url = [NSString stringWithFormat:@"%@%@", HOST, @"/api/changeWhatsupByToken"];
+        [params setObject:self.textField.text forKey:@"whatsup"];
+    }
+    [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

@@ -144,7 +144,10 @@ static NSString * const SegueIdentifier = @"ShowChat";
         ChatViewController *chatViewController = segue.destinationViewController;
         TableViewCell *cell = sender;
         chatViewController.friendID = [NSString stringWithString:cell.uid];
+        chatViewController.friendName = cell.name.text;
+        chatViewController.friendAvatarImage = cell.avatar.image;
         chatViewController.socket = self.socket;
+        chatViewController.title = cell.name.text;
         chatViewController.hidesBottomBarWhenPushed = YES;
     }
 }

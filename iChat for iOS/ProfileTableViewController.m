@@ -10,6 +10,7 @@
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "ChangeTextViewController.h"
 
 @interface ProfileTableViewController ()
 
@@ -26,15 +27,23 @@
 
 @implementation ProfileTableViewController
 
+static NSString * const NameSegueIdentifier = @"ChangeNickname";
+static NSString * const LocationSegueIdentifier = @"ChangeLocation";
+static NSString * const WhatsupSegueIdentifier = @"ChangeWhatsup";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchProfileData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchProfileData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,15 +126,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:NameSegueIdentifier]) {
+        ChangeTextViewController *changeTextViewController = segue.destinationViewController;
+        changeTextViewController.title = @"Name";
+        changeTextViewController.textField.text = self.name.text;
+    }
+    if ([segue.identifier isEqualToString:LocationSegueIdentifier]) {
+        ChangeTextViewController *changeTextViewController = segue.destinationViewController;
+        changeTextViewController.title = @"Location";
+        changeTextViewController.textField.text = self.location.text;
+    }
+    if ([segue.identifier isEqualToString:WhatsupSegueIdentifier]) {
+        ChangeTextViewController *changeTextViewController = segue.destinationViewController;
+        changeTextViewController.title = @"What's up";
+        changeTextViewController.textField.text = self.whatsup.text;
+    }
 }
-*/
+
+#pragma mark - Getter Setter
 
 - (UIImageView *)avatar {
     if (!_avatar) {

@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *email;
+@property (weak, nonatomic) IBOutlet UILabel *Gender;
 @property (weak, nonatomic) IBOutlet UILabel *birthday;
 @property (weak, nonatomic) IBOutlet UILabel *location;
 @property (weak, nonatomic) IBOutlet UILabel *whatsup;
@@ -27,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Profile";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -74,7 +76,7 @@
 #warning Incomplete implementation, return the number of rows
     return 0;
 }
-
+*/
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
