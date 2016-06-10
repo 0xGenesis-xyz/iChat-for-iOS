@@ -7,8 +7,13 @@
 //
 
 #import "SetPasswordViewController.h"
+#import "iChat.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface SetPasswordViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *password1;
+@property (weak, nonatomic) IBOutlet UITextField *password2;
 
 @end
 
@@ -22,6 +27,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)clickDone:(UIBarButtonItem *)sender {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"pwd1": self.password1.text, @"pwd2": self.password2.text };
+    [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changePasswordByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickCancel:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

@@ -12,6 +12,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "ChangeTextViewController.h"
 #import "ChangeOptionTableViewController.h"
+#import "PickImageViewController.h"
 
 @interface ProfileTableViewController ()
 
@@ -28,6 +29,7 @@
 
 @implementation ProfileTableViewController
 
+static NSString * const AvatarSegueIdentifier = @"ChangeAvatar";
 static NSString * const NameSegueIdentifier = @"ChangeNickname";
 static NSString * const GenderSegueIdentifier = @"ChangeGender";
 static NSString * const LocationSegueIdentifier = @"ChangeLocation";
@@ -130,29 +132,33 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Password" message:@"Enter current password" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        
-        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"checkPasswordByToken": alertController.textFields[0].text };
-        [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changeGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-            NSString *state = [dict valueForKey:@"state"];
-            if ([state isEqualToString:@"success"]) {
-                [self performSegueWithIdentifier:PasswordSegueIdentifier sender:self];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@", [error localizedDescription]);
+    if (indexPath.section == 2) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Password" message:@"Enter current password" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            
+            NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"password": alertController.textFields[0].text };
+            [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/checkPasswordByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+                NSString *state = [dict valueForKey:@"state"];
+                if ([state isEqualToString:@"success"]) {
+                    [self performSegueWithIdentifier:PasswordSegueIdentifier sender:self];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@", [error localizedDescription]);
+            }];
         }];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
-    
-    [alertController addTextFieldWithConfigurationHandler:nil];
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.secureTextEntry = YES;
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Navigation
@@ -161,6 +167,10 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:AvatarSegueIdentifier]) {
+        PickImageViewController *pickImageViewController = segue.destinationViewController;
+        pickImageViewController.avatar = self.avatar;
+    }
     if ([segue.identifier isEqualToString:NameSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
         changeTextViewController.title = @"Name";
@@ -200,6 +210,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 
 - (void)setAvatarURL:(NSURL *)avatarURL {
     _avatarURL = avatarURL;
+    NSLog(@"%@", avatarURL);
     [self.avatar setImageWithURL:_avatarURL];
 }
 

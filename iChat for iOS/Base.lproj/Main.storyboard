@@ -657,21 +657,63 @@
                     <view key="view" contentMode="scaleToFill" id="cor-Fv-kge">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set a new password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s76-zC-w6Y">
+                                <rect key="frame" x="20" y="72" width="560" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ARf-NR-6qj">
+                                <rect key="frame" x="168" y="120" width="412" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R5d-hQ-WaR">
+                                <rect key="frame" x="168" y="158" width="412" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="new password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MH2-y2-lMw">
+                                <rect key="frame" x="20" y="120" width="140" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="confirm password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7A0-HS-TI9">
+                                <rect key="frame" x="20" y="158" width="140" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Set Password" id="bIY-em-Dg6">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vbj-94-FkG"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="X2q-L8-Ltq"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vbj-94-FkG">
+                            <connections>
+                                <action selector="clickCancel:" destination="xYA-Ac-bIa" id="cjz-dJ-bUG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="X2q-L8-Ltq">
+                            <connections>
+                                <action selector="clickDone:" destination="xYA-Ac-bIa" id="lrE-5z-24Y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="password1" destination="ARf-NR-6qj" id="QKP-X6-Gbm"/>
+                        <outlet property="password2" destination="R5d-hQ-WaR" id="v75-zg-hgz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zox-7p-pqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3633" y="1710"/>
         </scene>
-        <!--View Controller-->
+        <!--Avatar-->
         <scene sceneID="BMp-GZ-uYd">
             <objects>
-                <viewController id="vvQ-i3-3gg" sceneMemberID="viewController">
+                <viewController id="vvQ-i3-3gg" customClass="PickImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wF1-k0-Za7"/>
                         <viewControllerLayoutGuide type="bottom" id="SFB-gY-r8k"/>
@@ -679,8 +721,23 @@
                     <view key="view" contentMode="scaleToFill" id="lIS-jj-pIu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-GY-JaX">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Avatar" id="Qcw-In-sx0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="kAh-et-Vg3">
+                            <connections>
+                                <action selector="changeAvatar:" destination="vvQ-i3-3gg" id="ijV-fW-Nh8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="avatar" destination="0pZ-GY-JaX" id="Ra9-DO-uxg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DI0-D7-WX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
