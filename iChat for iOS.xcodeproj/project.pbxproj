@@ -66,6 +66,7 @@
 		38C5DE611D0A97FF008023BE /* SetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordViewController.m; sourceTree = "<group>"; };
 		38C5DE631D0AE86F008023BE /* PickImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickImageViewController.h; sourceTree = "<group>"; };
 		38C5DE641D0AE86F008023BE /* PickImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickImageViewController.m; sourceTree = "<group>"; };
+		38C5DE671D0B1D0A008023BE /* SwitchBetweenScreenDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchBetweenScreenDelegate.h; sourceTree = "<group>"; };
 		38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
 		38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
 		38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 			children = (
 				380C6D481D0467F4009AE2BE /* ViewController.h */,
 				380C6D491D0467F4009AE2BE /* ViewController.m */,
+				38C5DE671D0B1D0A008023BE /* SwitchBetweenScreenDelegate.h */,
 				38C5DE571D0A5D7B008023BE /* LoginViewController.h */,
 				38C5DE581D0A5D7B008023BE /* LoginViewController.m */,
 				38C5DE5A1D0A6D20008023BE /* SignupViewController.h */,

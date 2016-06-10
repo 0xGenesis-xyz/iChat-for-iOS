@@ -36,7 +36,7 @@
     NSDictionary *params = @{ @"uid": self.uid.text, @"password": self.password.text };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/login"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"chats"]];
+        NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
         if ([state isEqualToString:@"success"]) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -45,7 +45,13 @@
     }];
 }
 
+- (void)loginSuccessfully {
+    
+}
+
 - (IBAction)switchToSignup:(UIButton *)sender {
+    if ([_delegate respondsToSelector:@selector(switchToSignupScreen)])
+        [_delegate switchToSignupScreen];
 }
 
 - (IBAction)forgetPassword:(UIButton *)sender {

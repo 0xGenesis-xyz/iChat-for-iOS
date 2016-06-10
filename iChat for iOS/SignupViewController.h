@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SwitchBetweenScreenDelegate.h"
 
 @interface SignupViewController : UIViewController
+
+@property (weak, nonatomic) id <SwitchBetweenScreenDelegate> delegate;
 
 @end

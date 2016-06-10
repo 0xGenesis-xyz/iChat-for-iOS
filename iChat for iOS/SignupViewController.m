@@ -38,7 +38,7 @@
     NSDictionary *params = @{ @"email": self.email.text,  @"username": self.username.text, @"pwd1": self.password1.text, @"pwd2": self.password2.text };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/signup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"chats"]];
+        NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
         if ([state isEqualToString:@"success"]) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -48,6 +48,8 @@
 }
 
 - (IBAction)switchToLogin:(UIButton *)sender {
+    if ([_delegate respondsToSelector:@selector(switchToLoginScreen)])
+        [_delegate switchToLoginScreen];
 }
 
 /*

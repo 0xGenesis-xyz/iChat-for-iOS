@@ -10,8 +10,15 @@
 #import <JSQMessagesViewController/JSQMessagesViewController.h>
 #import <AFNetworking/AFNetworking.h>
 #import <SocketIOClientSwift/SocketIOClientSwift-Swift.h>
+#import "LoginViewController.h"
+#import "SignupViewController.h"
+#import "SwitchBetweenScreenDelegate.h"
 
-@interface ViewController ()
+@interface ViewController () <SwitchBetweenScreenDelegate>
+
+@property (strong, nonatomic) LoginViewController *loginViewController;
+@property (strong, nonatomic) SignupViewController *signupViewController;
+@property (strong, nonatomic) UIViewController *currentViewController;
 
 @end
 
@@ -21,29 +28,43 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
-    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": @"sylvanuszhy@gmail.com"} }];
-    
-    [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        NSLog(@"socket connected");
-    }];
-    
-    [socket on:@"currentAmount" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        double cur = [[data objectAtIndex:0] floatValue];
-        
-        [socket emitWithAck:@"canUpdate" withItems:@[@(cur)]](0, ^(NSArray* data) {
-            [socket emit:@"update" withItems:@[@{@"amount": @(cur + 2.50)}]];
-        });
-        
-        [ack with:@[@"Got your currentAmount, ", @"dude"]];
-    }];
-    
-    [socket connect];
+    self.loginViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVC"];
+    self.signupViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignupVC"];
+    self.loginViewController.delegate = self;
+    self.signupViewController.delegate = self;
+
+    [self addChildViewController:self.loginViewController];
+    [self.view addSubview:self.loginViewController.view];
+    self.currentViewController = self.loginViewController;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - SwitchBetweenScreenDelegate
+
+- (void)switchToLoginScreen {
+    [self replaceViewController:self.currentViewController withViewController:self.loginViewController];
+}
+
+- (void)switchToSignupScreen {
+    [self replaceViewController:self.currentViewController withViewController:self.signupViewController];
+}
+
+- (void)replaceViewController:(UIViewController *)oldViewController withViewController:(UIViewController *)newViewController {
+    [self addChildViewController:newViewController];
+    [self transitionFromViewController:oldViewController toViewController:newViewController duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
+        if (finished) {
+            [newViewController didMoveToParentViewController:self];
+            [oldViewController willMoveToParentViewController:nil];
+            [oldViewController removeFromParentViewController];
+            self.currentViewController = newViewController;
+        } else {
+            self.currentViewController = oldViewController;
+        }
+    }];
 }
 
 @end
