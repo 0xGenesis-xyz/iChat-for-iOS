@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "GroupTableViewController.h"
+#import "ChatViewController.h"
 
 @interface FriendTableViewController ()
 
@@ -27,7 +28,8 @@
 
 @implementation FriendTableViewController
 
-static NSString * const SegueIdentifier = @"ShowGroup";
+static NSString * const GroupSegueIdentifier = @"ShowGroup";
+static NSString * const NewChatSegueIdentifier = @"ShowNewChat";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,6 +65,18 @@ static NSString * const SegueIdentifier = @"ShowGroup";
         self.birthday.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"birthday"]];
         self.location.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"location"]];
         self.whatsup.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"whatsup"]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (IBAction)deleteContact:(UIButton *)sender {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID, @"gid": self.groupID };
+    [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/deleteFriend"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -131,10 +145,26 @@ static NSString * const SegueIdentifier = @"ShowGroup";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:SegueIdentifier]) {
+    if ([segue.identifier isEqualToString:GroupSegueIdentifier]) {
         GroupTableViewController *groupTableViewController = segue.destinationViewController;
         groupTableViewController.groupID = [NSString stringWithString:self.groupID];
         groupTableViewController.friendID = [NSString stringWithString:self.friendID];
+    }
+    if ([segue.identifier isEqualToString:NewChatSegueIdentifier]) {
+        ChatViewController *chatViewController = segue.destinationViewController;
+        chatViewController.friendID = [NSString stringWithString:self.friendID];
+        chatViewController.friendName = [NSString stringWithString:self.name.text];
+        chatViewController.friendAvatarImage = self.avatar.image;
+        chatViewController.socket = self.socket;
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID };
+        [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/newChat"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }];
     }
 }
 

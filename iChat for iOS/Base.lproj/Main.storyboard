@@ -6,9 +6,27 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="xTg-MY-iQm">
+            <objects>
+                <viewController id="9Q0-bW-kME" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iv7-w5-ew6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ejp-jl-wQO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TwX-rE-7jZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9pt-v6-d0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-154" y="-527"/>
+        </scene>
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,12 +34,121 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-ns-KRh">
+                                <rect key="frame" x="20" y="323" width="560" height="30"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HVo-DR-FiA"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rh2-1g-ZY5">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cf2-yA-qey">
+                                <rect key="frame" x="20" y="247" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iChat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRt-g8-dgj">
+                                <rect key="frame" x="20" y="189" width="560" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijr-f4-CiZ">
+                                <rect key="frame" x="500" y="550" width="80" height="30"/>
+                                <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="switchToSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPy-xT-9xI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-UT-PHh">
+                                <rect key="frame" x="20" y="550" width="120" height="30"/>
+                                <state key="normal" title="Forget Password"/>
+                                <connections>
+                                    <action selector="forgetPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="05q-JK-Wm2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="rh2-1g-ZY5" id="n9e-Nv-Xra"/>
+                        <outlet property="uid" destination="cf2-yA-qey" id="4g9-PQ-Kka"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-269" y="289"/>
+            <point key="canvasLocation" x="553" y="-919"/>
+        </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="fwg-3P-GIQ">
+            <objects>
+                <viewController id="O2g-L2-Wu1" customClass="SignupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AKz-JO-NpI"/>
+                        <viewControllerLayoutGuide type="bottom" id="YCV-pP-Mdd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C7g-nd-eg6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EG8-sx-zl3">
+                                <rect key="frame" x="20" y="209" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAm-nr-Emy">
+                                <rect key="frame" x="20" y="247" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eko-uk-Qv1">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zrn-1I-Snv">
+                                <rect key="frame" x="20" y="323" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xg-ti-OVa">
+                                <rect key="frame" x="20" y="361" width="560" height="30"/>
+                                <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="signup:" destination="O2g-L2-Wu1" eventType="touchUpInside" id="Bwt-Y2-xI8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcU-Z4-JFe">
+                                <rect key="frame" x="520" y="550" width="60" height="30"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="switchToLogin:" destination="O2g-L2-Wu1" eventType="touchUpInside" id="QTR-NO-YgG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iChat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqa-Pc-WMK">
+                                <rect key="frame" x="20" y="151" width="560" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="email" destination="EG8-sx-zl3" id="Lwu-CN-Y4w"/>
+                        <outlet property="password1" destination="Eko-uk-Qv1" id="s13-We-I5G"/>
+                        <outlet property="password2" destination="Zrn-1I-Snv" id="zqB-Co-gNB"/>
+                        <outlet property="username" destination="nAm-nr-Emy" id="cUT-V1-NSb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVe-IA-ot8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="-188"/>
         </scene>
         <!--iChat-->
         <scene sceneID="wUY-bJ-RwP">
@@ -101,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rOs-Ui-epg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3086" y="-966"/>
+            <point key="canvasLocation" x="3086" y="-284"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="q7h-lb-y0w">
@@ -217,7 +344,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="389-cx-5ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3086" y="-251"/>
+            <point key="canvasLocation" x="3086" y="-1007"/>
         </scene>
         <!--Friend Table View Controller-->
         <scene sceneID="BfK-gq-2db">
@@ -390,6 +517,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2c-DM-ABC">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="43"/>
                                                     <state key="normal" title="Messages"/>
+                                                    <connections>
+                                                        <segue destination="dLE-C5-6kz" kind="show" identifier="ShowNewChat" id="nJO-gZ-YVy"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -408,6 +538,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-i7-cAU">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="43"/>
                                                     <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteContact:" destination="7Jm-Ka-9FS" eventType="touchUpInside" id="BNK-6W-2wY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -476,7 +609,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDf-E8-QID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3797" y="564"/>
+            <point key="canvasLocation" x="3845" y="564"/>
         </scene>
         <!--Title-->
         <scene sceneID="Ms3-Cp-65B">
@@ -513,10 +646,10 @@
             </objects>
             <point key="canvasLocation" x="2202" y="1710"/>
         </scene>
-        <!--View Controller-->
+        <!--Set Password-->
         <scene sceneID="qGn-gs-mrh">
             <objects>
-                <viewController id="xYA-Ac-bIa" sceneMemberID="viewController">
+                <viewController id="xYA-Ac-bIa" customClass="SetPasswordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SvX-QF-xyU"/>
                         <viewControllerLayoutGuide type="bottom" id="Lat-nh-TP5"/>
@@ -526,6 +659,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Set Password" id="bIY-em-Dg6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vbj-94-FkG"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="X2q-L8-Ltq"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zox-7p-pqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -884,7 +1021,7 @@
             </objects>
             <point key="canvasLocation" x="2202" y="847"/>
         </scene>
-        <!--Title-->
+        <!--Birthday-->
         <scene sceneID="GWO-mi-46d">
             <objects>
                 <viewController id="y69-5s-0Iq" customClass="ChangeDateViewController" sceneMemberID="viewController">
@@ -905,7 +1042,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="gI5-Ii-LiX">
+                    <navigationItem key="navigationItem" title="Birthday" id="gI5-Ii-LiX">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="tDB-cO-SEC">
                             <connections>
                                 <action selector="ClickDone:" destination="y69-5s-0Iq" id="Awf-81-IqQ"/>
@@ -937,7 +1074,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YMJ-vz-1Xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="289"/>
+            <point key="canvasLocation" x="553" y="535"/>
         </scene>
         <!--Chats-->
         <scene sceneID="I1n-lD-GZj">
@@ -998,6 +1135,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="nJO-gZ-YVy"/>
         <segue reference="26e-rH-uGS"/>
     </inferredMetricsTieBreakers>
 </document>

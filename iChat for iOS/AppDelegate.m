@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //[self showLoginScreen];
     return YES;
+}
+
+- (void)showLoginScreen {
+    LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVC"];
+    [self.window makeKeyAndVisible];
+    [self.window.rootViewController presentViewController:loginViewController animated:NO completion:nil];
+    //self.window.rootViewController = loginViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

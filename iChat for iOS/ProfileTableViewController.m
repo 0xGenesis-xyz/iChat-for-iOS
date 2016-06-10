@@ -32,6 +32,7 @@ static NSString * const NameSegueIdentifier = @"ChangeNickname";
 static NSString * const GenderSegueIdentifier = @"ChangeGender";
 static NSString * const LocationSegueIdentifier = @"ChangeLocation";
 static NSString * const WhatsupSegueIdentifier = @"ChangeWhatsup";
+static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -128,6 +129,31 @@ static NSString * const WhatsupSegueIdentifier = @"ChangeWhatsup";
 }
 */
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Password" message:@"Enter current password" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"checkPasswordByToken": alertController.textFields[0].text };
+        [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changeGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+            NSString *state = [dict valueForKey:@"state"];
+            if ([state isEqualToString:@"success"]) {
+                [self performSegueWithIdentifier:PasswordSegueIdentifier sender:self];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addTextFieldWithConfigurationHandler:nil];
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 

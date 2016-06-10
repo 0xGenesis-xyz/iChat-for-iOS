@@ -19,6 +19,9 @@
 		38C5DE4F1D0960D9008023BE /* GroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE4E1D0960D9008023BE /* GroupTableViewController.m */; };
 		38C5DE521D0996B7008023BE /* RequestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE511D0996B7008023BE /* RequestTableViewController.m */; };
 		38C5DE551D099B31008023BE /* FriendRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE541D099B31008023BE /* FriendRequest.m */; };
+		38C5DE591D0A5D7B008023BE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE581D0A5D7B008023BE /* LoginViewController.m */; };
+		38C5DE5C1D0A6D20008023BE /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE5B1D0A6D20008023BE /* SignupViewController.m */; };
+		38C5DE621D0A97FF008023BE /* SetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5DE611D0A97FF008023BE /* SetPasswordViewController.m */; };
 		38DF04FC1D0585AD0046D1FA /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */; };
 		38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */; };
 		38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38DF05011D0585D60046D1FA /* ProfileTableViewController.m */; };
@@ -54,6 +57,12 @@
 		38C5DE511D0996B7008023BE /* RequestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestTableViewController.m; sourceTree = "<group>"; };
 		38C5DE531D099B31008023BE /* FriendRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequest.h; sourceTree = "<group>"; };
 		38C5DE541D099B31008023BE /* FriendRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequest.m; sourceTree = "<group>"; };
+		38C5DE571D0A5D7B008023BE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		38C5DE581D0A5D7B008023BE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		38C5DE5A1D0A6D20008023BE /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		38C5DE5B1D0A6D20008023BE /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		38C5DE601D0A97FF008023BE /* SetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordViewController.h; sourceTree = "<group>"; };
+		38C5DE611D0A97FF008023BE /* SetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordViewController.m; sourceTree = "<group>"; };
 		38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
 		38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
 		38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
@@ -107,26 +116,13 @@
 			children = (
 				380C6D451D0467F4009AE2BE /* AppDelegate.h */,
 				380C6D461D0467F4009AE2BE /* AppDelegate.m */,
-				380C6D481D0467F4009AE2BE /* ViewController.h */,
-				380C6D491D0467F4009AE2BE /* ViewController.m */,
+				38C5DE5D1D0A6F08008023BE /* Log in */,
 				388BA3491D085215002FA20B /* TabBarController.h */,
 				388BA34A1D085215002FA20B /* TabBarController.m */,
-				38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */,
-				38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */,
-				38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */,
-				38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */,
 				38DF05031D0664F40046D1FA /* TableViewCell.h */,
 				38DF05041D0664F40046D1FA /* TableViewCell.m */,
-				38DF05061D06A41F0046D1FA /* ChatViewController.h */,
-				38DF05071D06A41F0046D1FA /* ChatViewController.m */,
-				38C5DE501D0996B7008023BE /* RequestTableViewController.h */,
-				38C5DE511D0996B7008023BE /* RequestTableViewController.m */,
-				38C5DE531D099B31008023BE /* FriendRequest.h */,
-				38C5DE541D099B31008023BE /* FriendRequest.m */,
-				38DF05121D07CE120046D1FA /* FriendTableViewController.h */,
-				38DF05131D07CE120046D1FA /* FriendTableViewController.m */,
-				38C5DE4D1D0960D9008023BE /* GroupTableViewController.h */,
-				38C5DE4E1D0960D9008023BE /* GroupTableViewController.m */,
+				38C5DE5E1D0A6F9F008023BE /* Chat */,
+				38C5DE5F1D0A6FC6008023BE /* Contact */,
 				38C5DE561D09A19E008023BE /* Profile */,
 				380C6D4B1D0467F4009AE2BE /* Main.storyboard */,
 				380C6D501D0467F4009AE2BE /* LaunchScreen.storyboard */,
@@ -157,8 +153,51 @@
 				38C5DE4B1D0956BF008023BE /* ChangeOptionTableViewController.m */,
 				388BA34F1D0932CA002FA20B /* ChangeDateViewController.h */,
 				388BA3501D0932CA002FA20B /* ChangeDateViewController.m */,
+				38C5DE601D0A97FF008023BE /* SetPasswordViewController.h */,
+				38C5DE611D0A97FF008023BE /* SetPasswordViewController.m */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		38C5DE5D1D0A6F08008023BE /* Log in */ = {
+			isa = PBXGroup;
+			children = (
+				380C6D481D0467F4009AE2BE /* ViewController.h */,
+				380C6D491D0467F4009AE2BE /* ViewController.m */,
+				38C5DE571D0A5D7B008023BE /* LoginViewController.h */,
+				38C5DE581D0A5D7B008023BE /* LoginViewController.m */,
+				38C5DE5A1D0A6D20008023BE /* SignupViewController.h */,
+				38C5DE5B1D0A6D20008023BE /* SignupViewController.m */,
+			);
+			name = "Log in";
+			sourceTree = "<group>";
+		};
+		38C5DE5E1D0A6F9F008023BE /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				38DF04FA1D0585AD0046D1FA /* ChatTableViewController.h */,
+				38DF04FB1D0585AD0046D1FA /* ChatTableViewController.m */,
+				38DF05061D06A41F0046D1FA /* ChatViewController.h */,
+				38DF05071D06A41F0046D1FA /* ChatViewController.m */,
+				38C5DE501D0996B7008023BE /* RequestTableViewController.h */,
+				38C5DE511D0996B7008023BE /* RequestTableViewController.m */,
+				38C5DE531D099B31008023BE /* FriendRequest.h */,
+				38C5DE541D099B31008023BE /* FriendRequest.m */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		38C5DE5F1D0A6FC6008023BE /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				38DF04FD1D0585C30046D1FA /* ContactTableViewController.h */,
+				38DF04FE1D0585C30046D1FA /* ContactTableViewController.m */,
+				38DF05121D07CE120046D1FA /* FriendTableViewController.h */,
+				38DF05131D07CE120046D1FA /* FriendTableViewController.m */,
+				38C5DE4D1D0960D9008023BE /* GroupTableViewController.h */,
+				38C5DE4E1D0960D9008023BE /* GroupTableViewController.m */,
+			);
+			name = Contact;
 			sourceTree = "<group>";
 		};
 		7C3CB8D8413B24C1C6722237 /* Frameworks */ = {
@@ -303,14 +342,17 @@
 				38DF05051D0664F40046D1FA /* TableViewCell.m in Sources */,
 				38DF04FF1D0585C30046D1FA /* ContactTableViewController.m in Sources */,
 				380C6D4A1D0467F4009AE2BE /* ViewController.m in Sources */,
+				38C5DE621D0A97FF008023BE /* SetPasswordViewController.m in Sources */,
 				38DF05111D07C3E10046D1FA /* ChangeTextViewController.m in Sources */,
 				380C6D471D0467F4009AE2BE /* AppDelegate.m in Sources */,
 				38C5DE4F1D0960D9008023BE /* GroupTableViewController.m in Sources */,
 				38C5DE521D0996B7008023BE /* RequestTableViewController.m in Sources */,
+				38C5DE591D0A5D7B008023BE /* LoginViewController.m in Sources */,
 				388BA34B1D085215002FA20B /* TabBarController.m in Sources */,
 				38DF05021D0585D60046D1FA /* ProfileTableViewController.m in Sources */,
 				380C6D441D0467F4009AE2BE /* main.m in Sources */,
 				388BA3511D0932CA002FA20B /* ChangeDateViewController.m in Sources */,
+				38C5DE5C1D0A6D20008023BE /* SignupViewController.m in Sources */,
 				38C5DE551D099B31008023BE /* FriendRequest.m in Sources */,
 				38DF05141D07CE120046D1FA /* FriendTableViewController.m in Sources */,
 				38C5DE4C1D0956BF008023BE /* ChangeOptionTableViewController.m in Sources */,

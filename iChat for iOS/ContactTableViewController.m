@@ -163,6 +163,7 @@ static NSString * const ShowSegueIdentifier = @"ShowContact";
         TableViewCell *cell = sender;
         friendTableViewController.groupID = [NSString stringWithString:cell.gid];
         friendTableViewController.friendID = [NSString stringWithString:cell.uid];
+        friendTableViewController.socket = self.socket;
         friendTableViewController.hidesBottomBarWhenPushed = YES;
     }
 }

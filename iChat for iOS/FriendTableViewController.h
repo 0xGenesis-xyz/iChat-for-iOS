@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SocketIOClientSwift/SocketIOClientSwift-Swift.h>
 
 @interface FriendTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *groupID;
 @property (strong, nonatomic) NSString *friendID;
+@property (strong, nonatomic) SocketIOClient *socket;
 
 @end
