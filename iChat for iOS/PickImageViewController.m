@@ -52,7 +52,7 @@
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/uploadAvatar"] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *data = UIImagePNGRepresentation(newPhoto);
         [formData appendPartWithFileData:data name:@"avatar" fileName:@"avatar.png" mimeType:@"image/png"];

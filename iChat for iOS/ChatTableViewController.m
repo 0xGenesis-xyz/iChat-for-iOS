@@ -55,7 +55,7 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatlistByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.chatList = [NSMutableArray arrayWithArray:[dict valueForKey:@"chats"]];
@@ -84,7 +84,7 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": chatID };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": chatID };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         cell.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
@@ -120,7 +120,7 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
         TableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": cell.uid };
+        NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": cell.uid };
         [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/removeChat"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@", [error localizedDescription]);

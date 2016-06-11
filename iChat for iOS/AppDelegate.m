@@ -17,16 +17,14 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[NSNotificationCenter defaultCenter] addObserverForName:LogoutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self logout];
     }];
     
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSString *name = [userDefault objectForKey:@"name"];
-    if (name == nil) {
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    if (token == nil) {
         [self showLoginScreen];
     }
     return YES;

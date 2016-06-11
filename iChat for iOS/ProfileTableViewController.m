@@ -60,7 +60,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"uid": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"uid": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getUserInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.avatarURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, [dict valueForKey:@"avatar"]]];
@@ -147,7 +147,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             manager.responseSerializer = [AFHTTPResponseSerializer serializer];
             
-            NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"password": alertController.textFields[0].text };
+            NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"password": alertController.textFields[0].text };
             [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/checkPasswordByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
                 NSString *state = [dict valueForKey:@"state"];

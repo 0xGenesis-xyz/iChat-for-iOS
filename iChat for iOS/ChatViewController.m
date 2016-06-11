@@ -53,7 +53,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": self.friendID };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatMessage"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSArray *messageArray = [NSArray arrayWithArray:[dict valueForKey:@"messages"]];
@@ -77,11 +77,11 @@
 #pragma mark - Data Source
 
 - (NSString *)senderId {
-    return @"sylvanuszhy@gmail.com";
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
 }
 
 - (NSString *)senderDisplayName {
-    return @"sylvanuszhy@gmail.com";
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

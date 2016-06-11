@@ -47,7 +47,7 @@ static NSString * const ShowSegueIdentifier = @"ShowContact";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getFriendlistByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.friendList = [NSArray arrayWithArray:[dict valueForKey:@"friends"]];

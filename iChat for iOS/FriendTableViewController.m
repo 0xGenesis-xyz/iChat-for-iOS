@@ -74,7 +74,7 @@ static NSString * const NewChatSegueIdentifier = @"ShowNewChat";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID, @"gid": self.groupID };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": self.friendID, @"gid": self.groupID };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/deleteFriend"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -160,7 +160,7 @@ static NSString * const NewChatSegueIdentifier = @"ShowNewChat";
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
-        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID };
+        NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": self.friendID };
         [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/newChat"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@", [error localizedDescription]);

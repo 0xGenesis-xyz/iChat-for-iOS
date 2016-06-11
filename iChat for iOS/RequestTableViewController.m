@@ -50,7 +50,7 @@ static NSString * const ReuseIdentifier = @"RequestCell";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getFriendRequest"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSArray *requestArray = [NSArray arrayWithArray:[dict valueForKey:@"requests"]];

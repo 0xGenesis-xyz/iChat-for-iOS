@@ -38,7 +38,9 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
         if ([state isEqualToString:@"success"]) {
+            NSString *token = [NSString stringWithFormat:@"%@", [dict valueForKey:@"token"]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:token forKey:@"token"];
             [userDefaults setObject:self.uid.text forKey:@"name"];
             [userDefaults setObject:self.password.text forKey:@"password"];
             [userDefaults synchronize];

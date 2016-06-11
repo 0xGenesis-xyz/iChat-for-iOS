@@ -17,7 +17,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
-    [params setObject:@"sylvanuszhy@gmail.com" forKey:@"token"];
+    [params setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] forKey:@"token"];
     if (indexPath.item == 0) {
         [params setObject:@"male" forKey:@"gender"];
     }

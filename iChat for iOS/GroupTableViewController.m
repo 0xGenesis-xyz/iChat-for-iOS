@@ -44,7 +44,7 @@ static NSString * const ReuseIdentifier = @"GroupCell";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com" };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"] };
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getGroupListByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         self.groupList = [NSArray arrayWithArray:[dict valueForKey:@"groups"]];
@@ -62,7 +62,7 @@ static NSString * const ReuseIdentifier = @"GroupCell";
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
-        NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"newGroup": newGroup };
+        NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"newGroup": newGroup };
         [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/addGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
             [self fetchGroupData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -135,7 +135,7 @@ static NSString * const ReuseIdentifier = @"GroupCell";
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSString *groupName = [NSString stringWithFormat:@"%@", [self.groupList objectAtIndex:indexPath.item]];
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"uid": self.friendID, @"fromGroup": self.groupID, @"toGroup": groupName };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"uid": self.friendID, @"fromGroup": self.groupID, @"toGroup": groupName };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changeGroup"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);

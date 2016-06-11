@@ -35,7 +35,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-    NSDictionary *params = @{ @"token": @"sylvanuszhy@gmail.com", @"pwd1": self.password1.text, @"pwd2": self.password2.text };
+    NSDictionary *params = @{ @"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"], @"pwd1": self.password1.text, @"pwd2": self.password2.text };
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/changePasswordByToken"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);

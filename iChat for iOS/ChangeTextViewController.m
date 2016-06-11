@@ -32,7 +32,7 @@
     
     NSString *url;
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
-    [params setObject:@"sylvanuszhy@gmail.com" forKey:@"token"];
+    [params setObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] forKey:@"token"];
     if ([self.title isEqualToString:@"Name"]) {
         url = [NSString stringWithFormat:@"%@%@", HOST, @"/api/changeNicknameByToken"];
         [params setObject:self.textField.text forKey:@"name"];

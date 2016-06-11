@@ -15,7 +15,7 @@
 
 - (void)awakeFromNib {
     NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
-    self.socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": @"sylvanuszhy@gmail.com"}, @"log": @NO }];
+    self.socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]}, @"log": @NO }];
     
     [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
