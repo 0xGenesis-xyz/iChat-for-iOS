@@ -38,6 +38,10 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
         if ([state isEqualToString:@"success"]) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:self.uid.text forKey:@"name"];
+            [userDefaults setObject:self.password.text forKey:@"password"];
+            [userDefaults synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

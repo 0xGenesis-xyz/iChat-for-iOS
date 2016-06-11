@@ -1117,6 +1117,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UmL-QW-wC8">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="43"/>
                                                     <state key="normal" title="Log Out"/>
+                                                    <connections>
+                                                        <action selector="logout:" destination="9mI-qV-h3H" eventType="touchUpInside" id="vin-Fp-fpv"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1184,7 +1187,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="8AX-F0-SKQ">
             <objects>
-                <tabBarController id="EtU-sA-CbL" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="EtU-sA-CbL" customClass="TabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Yg7-Yr-1LZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

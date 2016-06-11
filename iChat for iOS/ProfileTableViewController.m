@@ -75,6 +75,15 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
     }];
 }
 
+- (IBAction)logout:(UIButton *)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"name"];
+    [userDefaults removeObjectForKey:@"password"];
+    [userDefaults synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:self userInfo:nil];
+}
+
 #pragma mark - Table view data source
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

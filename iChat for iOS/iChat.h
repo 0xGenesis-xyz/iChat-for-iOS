@@ -17,6 +17,8 @@
 #define NewMessageNotification @"NewMessageNotification"
 #define NewRequestNotification @"NewRequestNotification"
 
+#define LogoutNotification @"LogoutNotification"
+
 #define AvatarImageDiameter 40
 
 #endif /* iChat_h */

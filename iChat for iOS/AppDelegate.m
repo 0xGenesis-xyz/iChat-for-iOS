@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "iChat.h"
 #import "ViewController.h"
+#import "TabBarController.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +20,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self showLoginScreen];
+    [[NSNotificationCenter defaultCenter] addObserverForName:LogoutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self logout];
+    }];
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *name = [userDefault objectForKey:@"name"];
+    if (name == nil) {
+        [self showLoginScreen];
+    }
     return YES;
 }
 
@@ -27,6 +37,13 @@
     [self.window makeKeyAndVisible];
     [self.window.rootViewController presentViewController:viewController animated:NO completion:nil];
     //self.window.rootViewController = loginViewController;
+}
+
+- (void)logout {
+    TabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
+    [self.window setRootViewController:tabBarController];
+    
+    [self showLoginScreen];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
