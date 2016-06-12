@@ -178,7 +178,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:AvatarSegueIdentifier]) {
         PickImageViewController *pickImageViewController = segue.destinationViewController;
-        pickImageViewController.avatar = self.avatar;
+        pickImageViewController.avatar.image = self.avatar.image;
     }
     if ([segue.identifier isEqualToString:NameSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
@@ -219,7 +219,6 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 
 - (void)setAvatarURL:(NSURL *)avatarURL {
     _avatarURL = avatarURL;
-    NSLog(@"%@", avatarURL);
     [self.avatar setImageWithURL:_avatarURL];
 }
 

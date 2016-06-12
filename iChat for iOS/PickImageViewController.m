@@ -76,4 +76,11 @@
 }
 */
 
+- (UIImageView *)avatar {
+    if (!_avatar) {
+        _avatar = [[UIImageView alloc] init];
+    }
+    return _avatar;
+}
+
 @end

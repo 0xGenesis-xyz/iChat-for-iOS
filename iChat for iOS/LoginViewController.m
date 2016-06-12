@@ -45,6 +45,11 @@
             [userDefaults setObject:self.password.text forKey:@"password"];
             [userDefaults synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Log in" message:@"Log in Fail" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
