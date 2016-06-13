@@ -13,7 +13,9 @@
 
 @implementation TabBarController
 
-- (void)awakeFromNib {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     NSURL* url = [[NSURL alloc] initWithString:@"http://localhost:3000"];
     self.socket = [[SocketIOClient alloc] initWithSocketURL:url options:@{ @"connectParams": @{@"token": [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]}, @"log": @NO }];
     
@@ -39,10 +41,6 @@
     }];
     
     [self.socket connect];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
     
     UINavigationController *chatNavigationController = [self.viewControllers objectAtIndex:0];
     UINavigationController *contactNavigationController = [self.viewControllers objectAtIndex:1];
@@ -50,6 +48,13 @@
     ContactTableViewController *contactTableViewController = (ContactTableViewController *)contactNavigationController.topViewController;
     chatTableViewController.socket = self.socket;
     contactTableViewController.socket = self.socket;
+    NSLog(@"view will appear");
 }
+
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    
+//    
+//}
 
 @end

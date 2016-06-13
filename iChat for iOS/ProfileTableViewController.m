@@ -77,6 +77,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
 
 - (IBAction)logout:(UIButton *)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"token"];
     [userDefaults removeObjectForKey:@"name"];
     [userDefaults removeObjectForKey:@"password"];
     [userDefaults synchronize];

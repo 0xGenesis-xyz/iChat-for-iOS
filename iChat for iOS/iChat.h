@@ -17,6 +17,7 @@
 #define NewMessageNotification @"NewMessageNotification"
 #define NewRequestNotification @"NewRequestNotification"
 
+#define LoginNotification @"LoginNotification"
 #define LogoutNotification @"LogoutNotification"
 
 #define AvatarImageDiameter 40

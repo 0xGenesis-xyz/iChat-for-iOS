@@ -19,13 +19,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[NSNotificationCenter defaultCenter] addObserverForName:LoginNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [self login];
+    }];
     [[NSNotificationCenter defaultCenter] addObserverForName:LogoutNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [self logout];
     }];
     
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     if (token == nil) {
-        [self showLoginScreen];
+        //[self showLoginScreen];
+        [self logout];
+    } else {
+        [self login];
     }
     return YES;
 }
@@ -37,11 +43,16 @@
     //self.window.rootViewController = loginViewController;
 }
 
-- (void)logout {
+- (void)login {
     TabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
     [self.window setRootViewController:tabBarController];
+}
+
+- (void)logout {
+    ViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ViewController"];
+    [self.window setRootViewController:viewController];
     
-    [self showLoginScreen];
+    //[self showLoginScreen];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -37,6 +37,7 @@
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/login"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
+        NSString *alert = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
         if ([state isEqualToString:@"success"]) {
             NSString *token = [NSString stringWithFormat:@"%@", [dict valueForKey:@"token"]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -44,9 +45,9 @@
             [userDefaults setObject:self.uid.text forKey:@"name"];
             [userDefaults setObject:self.password.text forKey:@"password"];
             [userDefaults synchronize];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:self userInfo:nil];
         } else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Log in" message:@"Log in Fail" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Log in" message:alert preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];
@@ -54,10 +55,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
-}
-
-- (void)loginSuccessfully {
-    
 }
 
 - (IBAction)switchToSignup:(UIButton *)sender {
