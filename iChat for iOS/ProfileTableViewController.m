@@ -13,6 +13,7 @@
 #import "ChangeTextViewController.h"
 #import "ChangeOptionTableViewController.h"
 #import "PickImageViewController.h"
+#import "SetPasswordViewController.h"
 
 @interface ProfileTableViewController ()
 
@@ -80,6 +81,7 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
     [userDefaults removeObjectForKey:@"token"];
     [userDefaults removeObjectForKey:@"name"];
     [userDefaults removeObjectForKey:@"password"];
+    [userDefaults removeObjectForKey:@"avatar"];
     [userDefaults synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:LogoutNotification object:self userInfo:nil];
@@ -179,33 +181,36 @@ static NSString * const PasswordSegueIdentifier = @"ChangePassword";
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:AvatarSegueIdentifier]) {
         PickImageViewController *pickImageViewController = segue.destinationViewController;
-        pickImageViewController.avatar.image = self.avatar.image;
+        pickImageViewController.image = self.avatar.image;
+        pickImageViewController.hidesBottomBarWhenPushed = YES;
     }
     if ([segue.identifier isEqualToString:NameSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
         changeTextViewController.title = @"Name";
-        changeTextViewController.textField.text = self.name.text;
+        changeTextViewController.text = self.name.text;
+        changeTextViewController.hidesBottomBarWhenPushed = YES;
     }
     if ([segue.identifier isEqualToString:GenderSegueIdentifier]) {
         ChangeOptionTableViewController *changeOptionTableViewController = segue.destinationViewController;
         changeOptionTableViewController.title = @"Gender";
-        if ([self.gender.text isEqualToString:@"male"]) {
-            changeOptionTableViewController.male.text = @"✔️";
-            changeOptionTableViewController.female.text = @"";
-        } else {
-            changeOptionTableViewController.male.text = @"";
-            changeOptionTableViewController.female.text = @"✔️";
-        }
+        changeOptionTableViewController.option = self.gender.text;
+        changeOptionTableViewController.hidesBottomBarWhenPushed = YES;
     }
     if ([segue.identifier isEqualToString:LocationSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
         changeTextViewController.title = @"Location";
-        changeTextViewController.textField.text = self.location.text;
+        changeTextViewController.text = self.location.text;
+        changeTextViewController.hidesBottomBarWhenPushed = YES;
     }
     if ([segue.identifier isEqualToString:WhatsupSegueIdentifier]) {
         ChangeTextViewController *changeTextViewController = segue.destinationViewController;
         changeTextViewController.title = @"What's up";
-        changeTextViewController.textField.text = self.whatsup.text;
+        changeTextViewController.text = self.whatsup.text;
+        changeTextViewController.hidesBottomBarWhenPushed = YES;
+    }
+    if ([segue.identifier isEqualToString:PasswordSegueIdentifier]) {
+        SetPasswordViewController *setPasswordViewController = segue.destinationViewController;
+        setPasswordViewController.hidesBottomBarWhenPushed = YES;
     }
 }
 

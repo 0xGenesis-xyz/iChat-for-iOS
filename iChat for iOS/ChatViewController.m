@@ -16,6 +16,7 @@
 @interface ChatViewController ()
 
 @property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) JSQMessagesAvatarImage *myAvatar;
 @property (strong, nonatomic) JSQMessagesAvatarImage *friendAvatar;
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
@@ -42,6 +43,11 @@
     [super viewWillAppear:animated];
     [self fetchMessageData];
     self.friendAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:self.friendAvatarImage diameter:AvatarImageDiameter];
+    
+    NSString *avatar = [[NSUserDefaults standardUserDefaults] objectForKey:@"avatar"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", AVATARROOT, avatar]];
+    UIImage *myAvatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+    self.myAvatar = [JSQMessagesAvatarImageFactory avatarImageWithImage:myAvatarImage diameter:AvatarImageDiameter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,7 +112,7 @@
     if ([message.senderId isEqualToString:self.friendID]) {
         return self.friendAvatar;
     } else {
-        return nil;
+        return self.myAvatar;
     }
 }
 

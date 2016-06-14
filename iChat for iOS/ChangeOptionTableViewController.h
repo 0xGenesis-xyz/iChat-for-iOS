@@ -10,7 +10,6 @@
 
 @interface ChangeOptionTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *male;
-@property (weak, nonatomic) IBOutlet UILabel *female;
+@property (strong, nonatomic) NSString *option;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface PickImageViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIImageView *avatar;
+@property (strong, nonatomic) UIImage *image;
 
 @end

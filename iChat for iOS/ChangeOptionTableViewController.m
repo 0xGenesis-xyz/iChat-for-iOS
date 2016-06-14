@@ -10,7 +10,36 @@
 #import "iChat.h"
 #import <AFNetworking/AFNetworking.h>
 
+@interface ChangeOptionTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *male;
+@property (weak, nonatomic) IBOutlet UILabel *female;
+
+@end
+
 @implementation ChangeOptionTableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([self.option isEqualToString:@"male"]) {
+        self.male.text = @"✔️";
+        self.female.text = @"";
+    }
+    if ([self.option isEqualToString:@"female"]) {
+        self.male.text = @"";
+        self.female.text = @"✔️";
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

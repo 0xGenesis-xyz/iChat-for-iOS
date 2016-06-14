@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *detail;
 @property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UILabel *unread;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 
 @end

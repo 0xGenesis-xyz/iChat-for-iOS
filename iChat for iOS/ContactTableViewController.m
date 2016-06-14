@@ -93,6 +93,7 @@ static NSString * const ShowSegueIdentifier = @"ShowContact";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
+    // avatar cash bug
     
     NSDictionary *group = [self.friendList objectAtIndex:indexPath.section];
     NSString *groupID = [group valueForKey:@"group"];

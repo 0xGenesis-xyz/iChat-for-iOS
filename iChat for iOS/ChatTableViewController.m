@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "TableViewCell.h"
 #import "ChatViewController.h"
+#import "RequestTableViewController.h"
 
 @interface ChatTableViewController ()
 
@@ -94,8 +95,20 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
     }];
     [manager GET:[NSString stringWithFormat:@"%@%@", HOST, @"/api/getChatInfo"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
+        // new chat bug
         cell.detail.text = [dict objectForKey:@"message"];
-        cell.time.text = [dict objectForKey:@"time"];
+        NSString *time = [dict objectForKey:@"time"];
+        NSNumber *unread = [dict objectForKey:@"unread"];
+        if (unread.intValue == 0) {
+            cell.time.text = time;
+            cell.unread.hidden = true;
+        } else {
+            cell.unread.layer.masksToBounds = YES;
+            cell.unread.layer.cornerRadius = 12.0f;
+            cell.unread.text = [NSString stringWithFormat:@"%@", unread];
+            cell.time.hidden = true;
+            
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
@@ -168,6 +181,11 @@ static NSString * const RequestSegueIdentifier = @"ShowRequest";
         chatViewController.socket = self.socket;
         chatViewController.title = cell.name.text;
         chatViewController.hidesBottomBarWhenPushed = YES;
+    }
+    if ([segue.identifier isEqualToString:RequestSegueIdentifier]) {
+        RequestTableViewController *requestTableViewController = segue.destinationViewController;
+        requestTableViewController.title = @"Validation";
+        requestTableViewController.hidesBottomBarWhenPushed = YES;
     }
 }
 

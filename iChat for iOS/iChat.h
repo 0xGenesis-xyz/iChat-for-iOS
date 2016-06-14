@@ -20,6 +20,6 @@
 #define LoginNotification @"LoginNotification"
 #define LogoutNotification @"LogoutNotification"
 
-#define AvatarImageDiameter 40
+#define AvatarImageDiameter 200
 
 #endif /* iChat_h */

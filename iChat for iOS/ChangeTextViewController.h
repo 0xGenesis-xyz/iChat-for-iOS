@@ -10,6 +10,6 @@
 
 @interface ChangeTextViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) NSString *text;
 
 @end

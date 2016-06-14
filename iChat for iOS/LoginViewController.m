@@ -37,16 +37,18 @@
     [manager POST:[NSString stringWithFormat:@"%@%@", HOST, @"/api/login"] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
         NSString *state = [NSString stringWithFormat:@"%@", [dict valueForKey:@"state"]];
-        NSString *alert = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
         if ([state isEqualToString:@"success"]) {
             NSString *token = [NSString stringWithFormat:@"%@", [dict valueForKey:@"token"]];
+            NSString *avatar = [NSString stringWithFormat:@"%@", [dict valueForKey:@"avatar"]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:token forKey:@"token"];
             [userDefaults setObject:self.uid.text forKey:@"name"];
             [userDefaults setObject:self.password.text forKey:@"password"];
+            [userDefaults setObject:avatar forKey:@"avatar"];
             [userDefaults synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotification object:self userInfo:nil];
         } else {
+            NSString *alert = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Log in" message:alert preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:okAction];

@@ -12,6 +12,8 @@
 
 @interface ChangeTextViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+
 @end
 
 @implementation ChangeTextViewController
@@ -19,6 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.textField.text = self.text;
 }
 
 - (void)didReceiveMemoryWarning {
