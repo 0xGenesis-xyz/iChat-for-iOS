@@ -1,7 +1,9 @@
 # iChat-for-iOS
 An instant massage app on iOS
 
-Message UI Framework: [JSQMessage]https://github.com/jessesquires/JSQMessagesViewController)
+Message UI Framework: [JSQMessage](https://github.com/jessesquires/JSQMessagesViewController)
+
+Realtime Application Framework(Client): [Socket.io](https://github.com/socketio/socket.io-client-swift)
 
 As for server, please see [iChat](https://github.com/Sylvanuszhy/iChat)
 
